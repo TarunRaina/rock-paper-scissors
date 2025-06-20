@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/rock-paper-scissors/static/css/main.48c66b1e.css",
+    "main.js": "/rock-paper-scissors/static/js/main.3f763b17.js",
+    "static/media/confetti.gif": "/rock-paper-scissors/static/media/confetti.1a46d4a09c008771b378.gif",
+    "static/media/card-back.png": "/rock-paper-scissors/static/media/card-back.6d7841b9c1acb3beb78d.png",
+    "static/media/lose.mp3": "/rock-paper-scissors/static/media/lose.476ab65abb47c4f8229b.mp3",
+    "static/media/scissors.png": "/rock-paper-scissors/static/media/scissors.9fea905a79afcc711de3.png",
+    "static/media/paper.png": "/rock-paper-scissors/static/media/paper.28f86cb501cee174a210.png",
+    "static/media/win.mp3": "/rock-paper-scissors/static/media/win.f65684e8e91f5683f947.mp3",
+    "static/media/rock.png": "/rock-paper-scissors/static/media/rock.d3338043addc755e36e0.png",
+    "static/media/drumroll.mp3": "/rock-paper-scissors/static/media/drumroll.708592d9abdb1d75a423.mp3",
+    "static/media/flip.mp3": "/rock-paper-scissors/static/media/flip.8ba4e2ec2a10ac61f2c0.mp3",
+    "static/media/hover.mp3": "/rock-paper-scissors/static/media/hover.2538a1cc86bc7f1df8a2.mp3",
+    "static/media/playagain.mp3": "/rock-paper-scissors/static/media/playagain.a1b5d03482e5a77db780.mp3",
+    "static/media/choose.mp3": "/rock-paper-scissors/static/media/choose.c862ccb2c38ffed7a9cc.mp3",
+    "static/media/draw.mp3": "/rock-paper-scissors/static/media/draw.39528ea471ed71a45f49.mp3",
+    "static/media/block.mp3": "/rock-paper-scissors/static/media/block.fddc5b7404467d7f6f5c.mp3",
+    "static/media/rain.gif": "/rock-paper-scissors/static/media/rain.6c234ab9864d054c44f1.gif",
+    "index.html": "/rock-paper-scissors/index.html",
+    "main.48c66b1e.css.map": "/rock-paper-scissors/static/css/main.48c66b1e.css.map",
+    "main.3f763b17.js.map": "/rock-paper-scissors/static/js/main.3f763b17.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48c66b1e.css",
+    "static/js/main.3f763b17.js"
+  ]
+}
