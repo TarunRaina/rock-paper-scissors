@@ -1,38 +1,298 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #5b3a1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.table {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  background-color: #127a27;
+  background-image: 
+    url("https://www.transparenttextures.com/patterns/fabric-of-squares.png"),
+    radial-gradient(circle at center, #169e30 10%, #127a27 40%, #085e16 80%);
+  background-repeat: repeat, no-repeat;
+  background-size: auto, cover;
+  background-blend-mode: overlay;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(0, 0, 0, 0.6);
+
+  overflow: hidden;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+}
+
+.wood-frame {
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  background-color: #5c3b1e;
+  background-image: 
+    url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  background-size: cover;
+  background-blend-mode: overlay;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+.background-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5.5rem;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.05);
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+  user-select: none;
+  letter-spacing: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.scoreboard {
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 160px); /* avoid clipping inside border */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.score {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 12px;
+  pointer-events: all;
+}
+
+.you {
+  color: #00ffcc;
+}
+
+.computer {
+  color: #ff6666;
+}
+
+.hands-container {
+  position: absolute;
+  top: 80px;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  transition: filter 0.5s;
+}
+
+.hands-container.dimmed {
+  filter: brightness(0.4);
+  pointer-events: none;
+}
+
+.hand {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card {
+  width: 120px;
+  height: 180px;
+  border-radius: 10px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 0 -30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.fanned-card:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.rotate0 {
+  transform: rotate(-10deg);
+}
+.rotate1 {
+  transform: rotate(0deg);
+}
+.rotate2 {
+  transform: rotate(10deg);
+}
+
+.computer-rotate0 {
+  transform: rotate(10deg);
+}
+.computer-rotate1 {
+  transform: rotate(0deg);
+}
+.computer-rotate2 {
+  transform: rotate(-10deg);
+}
+
+/* === Battle Cards Center === */
+.battle-arena {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.battle-card {
+  width: 120px;
+  height: 180px;
+  perspective: 1000px;
+  transition: transform 1s ease;
+  transform: translateY(0); /* This helps later if you animate entry */
+}
+
+
+.battle-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 2px solid white;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+.battle-card p {
+  text-align: center;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+/* FLIP ANIMATION */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.battle-card.computer.flipping .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+.card-front img,
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* RESULT */
+.result {
+  position: absolute;
+  top: calc(50% + 120px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+}
+
+.result h2 {
+  color: gold;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.result button {
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.result button:hover {
+  background: #ddd;
+}
+
+/* ✅ Confetti from bottom corners using 1 full gif */
+.confetti-gif-full {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  z-index: 999;
+  pointer-events: none;
+  animation: confettiFade 1.8s ease-out forwards;
+  object-fit: cover;
+}
+
+@keyframes confettiFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* 🌧 Rain full screen */
+.rain-gif {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 999;
+  animation: fadeRain 1.4s ease-out forwards;
+}
+
+@keyframes fadeRain {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
